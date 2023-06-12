@@ -16,6 +16,22 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
   }
 });
 
+// GooglePayLauncher integration
+app.get('/payment_intent', async (req: express.Request, res: express.Response) => {
+  const customer: Stripe.Customer = await stripe.customers.create();
+
+  const paymentIntent:Stripe.PaymentIntent = await stripe.paymentIntents.create({
+    amount: 1000,
+    currency: 'usd',
+    customer: customer.id,
+  });
+
+  return res.json({
+    paymentIntent: paymentIntent.client_secret,
+  });
+});
+
+// PaymentSheet integration
 app.get('/payment_sheet', async (req: express.Request, res: express.Response) => {
   const customer: Stripe.Customer = await stripe.customers.create();
 
