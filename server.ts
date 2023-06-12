@@ -28,6 +28,7 @@ app.get('/payment_intent', async (req: express.Request, res: express.Response) =
 
   return res.json({
     paymentIntent: paymentIntent.client_secret,
+    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
   });
 });
 
