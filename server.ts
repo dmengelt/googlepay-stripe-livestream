@@ -59,10 +59,11 @@ app.get('/payment_sheet', async (req: express.Request, res: express.Response) =>
 });
 
 app.post('/webhook', express.raw({type: 'application/json'}), async (req: express.Request, res: express.Response) => {
-  let event: Stripe.Event = req.body;
+  let event: Stripe.Event;
 
   const signature: string = req.headers['stripe-signature'] as string;
-  try {
+  
+  try {        
     event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET as string);
   } catch (err: any) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
@@ -76,8 +77,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (req: expres
     
     default: 
       //unexpected event type
-      console.log(`Unhandled event type ${event.type}`);
-      break;
+      console.log(`Unhandled event type ${event.type}`);      
   }
 
   return res.sendStatus(200);
