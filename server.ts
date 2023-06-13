@@ -69,15 +69,17 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (req: expres
 
   switch (event.type) {    
     case 'payment_intent.succeeded':
-        const paymentIntent: Stripe.PaymentIntent = event.data.object as Stripe.PaymentIntent;
-        console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
+      const paymentIntent: Stripe.PaymentIntent = event.data.object as Stripe.PaymentIntent;
+      console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
+      break;
     
     default: 
       //unexpected event type
       console.log(`Unhandled event type ${event.type}`);
+      break;
   }
 
-  return res.send(200);
+  return res.sendStatus(200);
 });
 
 app.listen(3000, () => console.log('Running on port 3000'));
