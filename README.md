@@ -1,6 +1,8 @@
-# googlepay-stripe-livestream
+# Collect payments on Android with Google Pay and Stripe
 
-Source for the livestream on 2023-06-15
+Backend source code used for the following livestreams:
+- [Collect payments on Android with Google Pay and Stripe](https://www.youtube.com/watch?v=fbkfB-FAaMg)
+- [Collect payments on Android with Google Pay and Stripe’s React Native SDK](https://www.youtube.com/watch?v=hlnrL88Lyzc)
 
 ## Running the server
 1. `npm i`
