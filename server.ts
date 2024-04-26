@@ -4,7 +4,7 @@ import express from 'express';
 
 // Initialize Stripe library 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2022-11-15',
+  apiVersion: '2024-04-10',
 });
 
 // Create new express app
@@ -39,7 +39,7 @@ app.get('/payment_sheet', async (req: express.Request, res: express.Response) =>
   const ephemeralKey: Stripe.EphemeralKey = await stripe.ephemeralKeys.create({
     customer: customer.id,
   }, {
-    apiVersion: '2022-11-15',
+    apiVersion: '2024-04-10',
   });
 
   const paymentIntent: Stripe.PaymentIntent = await stripe.paymentIntents.create({
